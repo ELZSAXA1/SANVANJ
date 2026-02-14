@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gracias ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+        }
+
+        /* --- FONDO DE LUCIÉRNAGAS --- */
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #ffff00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffff00;
+            animation: fly 10s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(110vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            50% { opacity: 0.8; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
+        }
+
+        /* --- CONTENEDOR DE TEXTO (HISTORIA) --- */
+        #story-container {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+            width: 80%;
+        }
+
+        .text-line {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            opacity: 0; /* Empieza invisible */
+            transition: opacity 1.5s ease-in-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* --- PANTALLA FINAL --- */
+        #final-screen {
+            display: none; /* Oculto al inicio */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            animation: fadeIn 3s ease;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-top: 30px;
+            text-align: center;
+            color: #ff4d4d;
+            text-shadow: 0 0 20px #ff0000;
+        }
+
+        /* Corazón CSS Puro */
+        .big-heart {
+            background-color: #ff4d4d;
+            display: inline-block;
+            height: 60px;
+            margin: 0 10px;
+            position: relative;
+            top: 0;
+            transform: rotate(-45deg);
+            width: 60px;
+            animation: heartbeat 1.5s infinite;
+            box-shadow: 0 0 40px #ff0000;
+        }
+
+        .big-heart:before,
+        .big-heart:after {
+            content: "";
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            height: 60px;
+            position: absolute;
+            width: 60px;
+        }
+
+        .big-heart:before {
+            top: -30px;
+            left: 0;
+        }
+
+        .big-heart:after {
+            left: 30px;
+            top: 0;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1) rotate(-45deg); }
+            20% { transform: scale(1.2) rotate(-45deg); }
+            40% { transform: scale(1) rotate(-45deg); }
+            60% { transform: scale(1.2) rotate(-45deg); }
+            100% { transform: scale(1) rotate(-45deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="firefly-container"></div>
+
+    <div id="story-container">
+        <div id="text-display" class="text-line"></div>
+    </div>
+
+    <div id="final-screen">
+        <div class="big-heart"></div>
+        <h1>Gracias por estar en mi vida mor, por siempre alegrarme morxitoo Te amo, pero esta vez no
+            un perro te amo de verdad mi amor nunca te vallas de mi lado mauk!!!
+        </h1>
+        <p style="margin-top: 20px; font-size: 1rem; opacity: 0.7;">ATTe: Achicopalado</p>
+    </div>
+
+    <script>
+        // 1. GENERAR LUCIÉRNAGAS (FONDO)
+        const fireflyContainer = document.getElementById('firefly-container');
+        for (let i = 0; i < 30; i++) {
+            const div = document.createElement('div');
+            div.classList.add('firefly');
+            div.style.left = Math.random() * 100 + 'vw';
+            div.style.animationDuration = Math.random() * 5 + 5 + 's'; // Entre 5 y 10s
+            div.style.animationDelay = Math.random() * 5 + 's';
+            fireflyContainer.appendChild(div);
+        }
+
+        // 2. SECUENCIA DE FRASES
+        const phrases = [
+            "Este no es solo un regalo virtual Morr...",
+            "Es una forma de decirte ",
+            "que cada día a tu lado",
+            "es mi momento favorito Morxito.",
+            "No importa lo que pase mañana,",
+            "siempre te elegiría a ti Mor.",
+            "Te Amo Mi Amoxitoo."
+        ];
+
+        const textDisplay = document.getElementById('text-display');
+        const storyContainer = document.getElementById('story-container');
+        const finalScreen = document.getElementById('final-screen');
+
+        let index = 0;
+
+        function showNextPhrase() {
+            if (index < phrases.length) {
+                // Poner texto y desvanecer IN (aparecer)
+                textDisplay.innerText = phrases[index];
+                textDisplay.style.opacity = 1;
+
+                // Esperar 3 segundos leyendo
+                setTimeout(() => {
+                    // Desvanecer OUT (desaparecer)
+                    textDisplay.style.opacity = 0;
+
+                    // Esperar 1.5 segundos a que desaparezca antes de la siguiente
+                    setTimeout(() => {
+                        index++;
+                        showNextPhrase();
+                    }, 1500); 
+
+                }, 3000); 
+
+            } else {
+                // SE ACABARON LAS FRASES -> MOSTRAR FINAL
+                storyContainer.style.display = 'none';
+                finalScreen.style.display = 'flex';
+            }
+        }
+
+        // Iniciar la secuencia al cargar (con un pequeño retraso)
+        setTimeout(showNextPhrase, 1000);
+
+    </script>
+</body>
+</html>
